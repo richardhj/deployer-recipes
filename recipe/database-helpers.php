@@ -28,7 +28,7 @@ task('database:retrieve', static function () {
 
     echo 'Preparing backup on remote..';
 
-    run('cd {{release_path}} && {{bin/php}} {{bin/console}} contao:backup:create');
+    run('cd {{release_path}} && {{bin/console}} contao:backup:create');
     $dumpFilename = run('ls var/backups | tail -n 1');
     echo ".finished\n";
     runLocally('mkdir -p var/backups');
@@ -90,7 +90,7 @@ task('database:release', static function () {
 
     echo ".finished\n";
     echo 'Restoring remote database..';
-    run("cd {{release_path}} && {{bin/php}} {{bin/console}} contao:backup:restore $dumpFilename");
+    run("cd {{release_path}} && {{bin/console}} contao:backup:restore $dumpFilename");
     echo ".finished\n";
 
     echo "  Restore of remote database completed\n";
